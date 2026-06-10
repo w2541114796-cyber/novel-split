@@ -1,0 +1,23 @@
+: Pylint
+
+: [push]
+
+:
+:
+: ubuntu-latest
+:
+:
+: ["3.8", "3.9", "3.10"]
+    步骤:
+    - 使用: actions/checkout@v4
+    - 名称: 设置 Python ${{ matrix.python-version }}
+      使用: actions/setup-python@v3
+      与:
+: ${{ 矩阵. python-版本 }}
+    - 名称: 安装依赖项
+: |
+        python -m pip install --upgrade pip
+        pip install pylint
+    - 名称: 使用 pylint 分析代码
+: |
+        pylint $(git ls-files '*.py')
